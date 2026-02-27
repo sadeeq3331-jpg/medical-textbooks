@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Site Verification -->
+    <!-- Google AdSense Code -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9595657076711413" crossorigin="anonymous"></script>
+    
+    <!-- Google Site Verification Meta Tag -->
     <meta name="google-site-verification" content="9595657076711413" />
     
     <meta charset="UTF-8">
@@ -25,7 +28,6 @@
             min-height: 100vh;
         }
         
-        /* Header/Navigation */
         .header {
             background: linear-gradient(135deg, #0a2942, #1b4c72);
             color: white;
@@ -84,7 +86,6 @@
             font-weight: 600;
         }
         
-        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #1b4c72, #2c7cb0);
             color: white;
@@ -141,7 +142,6 @@
             transform: scale(1.05);
         }
         
-        /* Main Content */
         .main-content {
             max-width: 1400px;
             margin: 3rem auto;
@@ -168,7 +168,6 @@
             cursor: pointer;
         }
         
-        /* Book Grid */
         .book-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -263,7 +262,6 @@
             background: #1b4c72;
         }
         
-        /* Categories Section */
         .categories {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -291,10 +289,6 @@
             color: white;
         }
         
-        .category-card:hover p {
-            color: white !important;
-        }
-        
         .category-card i {
             font-size: 2.5rem;
             color: #2c7cb0;
@@ -311,7 +305,6 @@
             margin-top: 0.5rem;
         }
         
-        /* Book Page (hidden by default) */
         .book-page {
             display: none;
             position: fixed;
@@ -352,7 +345,6 @@
             background: #ff5252;
         }
         
-        /* Footer */
         .footer {
             background: #0a2942;
             color: white;
@@ -405,7 +397,6 @@
             opacity: 0.7;
         }
         
-        /* Notification */
         .notification {
             position: fixed;
             bottom: 20px;
@@ -419,22 +410,18 @@
             z-index: 1002;
         }
         
-        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: column;
                 gap: 1rem;
             }
-            
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
             .hero h1 {
                 font-size: 2rem;
             }
-            
             .book-grid {
                 grid-template-columns: 1fr;
             }
@@ -442,8 +429,349 @@
     </style>
 </head>
 <body>
-    <!-- Your existing HTML body content goes here -->
-    <!-- I'm not including the entire body for brevity -->
-    <h1>Your content will go here</h1>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo" onclick="showHome()">
+                <i class="fas fa-book-medical"></i>
+                <span>MedLib</span>
+            </div>
+            <nav class="nav-links">
+                <a onclick="showHome()">Home</a>
+                <a onclick="showAllBooks()">Library</a>
+                <a onclick="showCategories()">Categories</a>
+                <a onclick="showAbout()">About</a>
+                <a onclick="showDonate()" class="donate-btn">
+                    <i class="fas fa-heart"></i> Support
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="heroSection">
+        <div class="hero-content">
+            <h1>Free Medical Textbooks for Everyone</h1>
+            <p>Access comprehensive, high-quality medical textbooks completely free. Study anytime, anywhere.</p>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for books, topics, or authors...">
+                <button onclick="searchBooks()"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content" id="mainContent">
+        <div class="section-title">
+            <h2><i class="fas fa-star" style="color: #ffd966; margin-right: 10px;"></i> Featured Textbooks</h2>
+            <span class="view-all" onclick="showAllBooks()">View All <i class="fas fa-arrow-right"></i></span>
+        </div>
+        
+        <div class="book-grid" id="featuredBooks"></div>
+
+        <h2 style="margin-bottom: 2rem; color: #0a2942;">
+            <i class="fas fa-tags" style="color: #2c7cb0; margin-right: 10px;"></i> Browse by Category
+        </h2>
+        
+        <div class="categories" id="categories"></div>
+
+        <div class="section-title" style="margin-top: 3rem;">
+            <h2><i class="fas fa-clock" style="color: #2c7cb0; margin-right: 10px;"></i> Recently Added</h2>
+            <span class="view-all" onclick="showAllBooks()">View All <i class="fas fa-arrow-right"></i></span>
+        </div>
+        
+        <div class="book-grid" id="recentBooks"></div>
+    </main>
+
+    <div style="background: linear-gradient(135deg, #f5f7fa, #e6f0fa); border-radius: 20px; padding: 3rem; text-align: center; margin: 4rem 5%;" id="supportSection">
+        <i class="fas fa-heart" style="font-size: 4rem; color: #ff6b6b; margin-bottom: 1rem;"></i>
+        <h2 style="color: #0a2942; margin-bottom: 1rem;">Support Free Medical Education</h2>
+        <p style="color: #4a5568; max-width: 600px; margin: 0 auto 2rem;">
+            Your donations help us create more textbooks and keep them free for medical students worldwide.
+        </p>
+        <a onclick="processDonation()" style="background: #ff6b6b; color: white; padding: 1rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-block; cursor: pointer;">
+            <i class="fas fa-coffee"></i> Buy Me a Coffee
+        </a>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>MedLib</h3>
+                <p>Free medical textbooks for students worldwide. Created with ❤️ by Abubakar Sadeeq.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a onclick="showAllBooks()">All Textbooks</a>
+                <a onclick="showCategories()">Categories</a>
+                <a onclick="showAbout()">About Us</a>
+                <a onclick="showContact()">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <a onclick="filterByCategory('Anatomy')">Anatomy</a>
+                <a onclick="filterByCategory('Physiology')">Physiology</a>
+                <a onclick="filterByCategory('Pathology')">Pathology</a>
+                <a onclick="filterByCategory('Pharmacology')">Pharmacology</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support Us</h3>
+                <a onclick="showDonate()">Donate</a>
+                <a onclick="shareSite()">Share</a>
+                <a onclick="showFeedback()">Feedback</a>
+                <a onclick="showContribute()">Contribute</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 MedLib. All rights reserved. Free for educational use.</p>
+        </div>
+    </footer>
+
+    <div class="book-page" id="bookPage">
+        <div class="close-book" onclick="closeBook()">
+            <i class="fas fa-times"></i>
+        </div>
+        <iframe id="bookFrame" src=""></iframe>
+    </div>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i> <span id="notificationMessage"></span>
+    </div>
+
+    <script>
+        const books = [
+            {
+                id: 1,
+                title: "Respiratory System Complete Textbook",
+                author: "Abubakar Sadeeq",
+                category: "Physiology",
+                subcategory: "Respiratory",
+                pages: 450,
+                readers: 1234,
+                featured: true,
+                recent: true,
+                filename: "respiratory-book.html",
+                description: "Complete coverage of respiratory physiology, pathology, and pharmacology."
+            },
+            {
+                id: 2,
+                title: "RESPIRATORY SYSTEM",
+                author: "Abubakar Sadeeq",
+                category: "Physiology",
+                subcategory: "Respiratory",
+                pages: 380,
+                readers: 567,
+                featured: true,
+                recent: true,
+                filename: "RESPIRATORY SYSTEM.html",
+                description: "Comprehensive respiratory system textbook."
+            },
+            {
+                id: 3,
+                title: "Respiratory System · Special Topics",
+                author: "Abubakar Sadeeq",
+                category: "Physiology",
+                subcategory: "Respiratory",
+                pages: 320,
+                readers: 432,
+                featured: true,
+                recent: true,
+                filename: "Respiratory System · Special Topics.html",
+                description: "Advanced topics in respiratory physiology and pathology."
+            },
+            {
+                id: 4,
+                title: "RESPIRATORY MCQs BANK",
+                author: "Abubakar Sadeeq",
+                category: "Question Bank",
+                subcategory: "Respiratory",
+                pages: 250,
+                readers: 789,
+                featured: true,
+                recent: true,
+                filename: "RESPIRATORY MCQs BANK.html",
+                description: "500+ high-yield respiratory system MCQs with detailed explanations."
+            }
+        ];
+
+        const categories = [
+            { name: "Anatomy", icon: "fa-skeleton", count: 0 },
+            { name: "Physiology", icon: "fa-heartbeat", count: 3 },
+            { name: "Pathology", icon: "fa-microscope", count: 0 },
+            { name: "Pharmacology", icon: "fa-pills", count: 0 },
+            { name: "Biochemistry", icon: "fa-dna", count: 0 },
+            { name: "Neuroscience", icon: "fa-brain", count: 0 },
+            { name: "Cardiology", icon: "fa-heart", count: 0 },
+            { name: "Question Bank", icon: "fa-question-circle", count: 1 }
+        ];
+
+        function updateCategoryCounts() {
+            categories.forEach(cat => {
+                cat.count = books.filter(book => 
+                    book.category === cat.name || book.subcategory === cat.name
+                ).length;
+            });
+        }
+        updateCategoryCounts();
+
+        function createBookCard(book) {
+            return `
+                <div class="book-card" onclick="openBook('${book.filename}')">
+                    <div class="book-cover">
+                        <i class="fas fa-book"></i>
+                        <span class="book-category">${book.category}</span>
+                    </div>
+                    <div class="book-info">
+                        <div class="book-title">${book.title}</div>
+                        <div class="book-author">by ${book.author}</div>
+                        <div class="book-stats">
+                            <span><i class="fas fa-file-alt"></i> ${book.pages} pages</span>
+                            <span><i class="fas fa-users"></i> ${book.readers} readers</span>
+                        </div>
+                        <button class="read-btn" onclick="event.stopPropagation(); openBook('${book.filename}')">
+                            <i class="fas fa-book-open"></i> Read Now
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function createCategoryCard(category) {
+            return `
+                <div class="category-card" onclick="filterByCategory('${category.name}')">
+                    <i class="fas ${category.icon}"></i>
+                    <h3>${category.name}</h3>
+                    <p>${category.count} books</p>
+                </div>
+            `;
+        }
+
+        function openBook(filename) {
+            document.getElementById('bookFrame').src = filename;
+            document.getElementById('bookPage').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBook() {
+            document.getElementById('bookPage').style.display = 'none';
+            document.getElementById('bookFrame').src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        function searchBooks() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const results = books.filter(book => 
+                book.title.toLowerCase().includes(term) ||
+                book.author.toLowerCase().includes(term) ||
+                book.category.toLowerCase().includes(term)
+            );
+            
+            if (results.length === 0) {
+                showNotification('No books found');
+            } else {
+                showNotification(`Found ${results.length} books`);
+                const mainContent = document.getElementById('mainContent');
+                let html = '<div class="section-title"><h2>Search Results</h2><span class="view-all" onclick="showHome()">Back to Home</span></div><div class="book-grid">';
+                results.forEach(book => html += createBookCard(book));
+                html += '</div>';
+                mainContent.innerHTML = html;
+            }
+        }
+
+        function filterByCategory(category) {
+            const results = books.filter(book => book.category === category);
+            const mainContent = document.getElementById('mainContent');
+            let html = `<div class="section-title"><h2>${category} Books</h2><span class="view-all" onclick="showHome()">Back to Home</span></div><div class="book-grid">`;
+            results.forEach(book => html += createBookCard(book));
+            html += '</div>';
+            mainContent.innerHTML = html;
+        }
+
+        function showHome() { location.reload(); }
+
+        function showAllBooks() {
+            const mainContent = document.getElementById('mainContent');
+            let html = '<div class="section-title"><h2>All Textbooks</h2><span class="view-all" onclick="showHome()">Back to Home</span></div><div class="book-grid">';
+            books.forEach(book => html += createBookCard(book));
+            html += '</div>';
+            mainContent.innerHTML = html;
+        }
+
+        function showCategories() {
+            const mainContent = document.getElementById('mainContent');
+            let html = '<div class="section-title"><h2>All Categories</h2><span class="view-all" onclick="showHome()">Back to Home</span></div><div class="categories">';
+            categories.forEach(cat => html += createCategoryCard(cat));
+            html += '</div>';
+            mainContent.innerHTML = html;
+        }
+
+        function showAbout() {
+            const mainContent = document.getElementById('mainContent');
+            mainContent.innerHTML = `
+                <div style="background: white; border-radius: 20px; padding: 3rem;">
+                    <h1 style="color: #0a2942; margin-bottom: 2rem;">About MedLib</h1>
+                    <p style="font-size: 1.2rem; line-height: 1.8; color: #4a5568;">
+                        MedLib is a free medical textbook library created by Abubakar Sadeeq to make high-quality medical education accessible to everyone, everywhere.
+                    </p>
+                    <button onclick="showDonate()" style="background: #2c7cb0; color: white; border: none; padding: 1rem 3rem; border-radius: 50px; font-size: 1.2rem; margin-top: 2rem; cursor: pointer;">
+                        <i class="fas fa-heart"></i> Support Us
+                    </button>
+                </div>
+            `;
+        }
+
+        function showDonate() {
+            showNotification('❤️ Thank you for your support!');
+        }
+
+        function showContact() {
+            showNotification('📧 Contact: abubakar@medlib.com');
+        }
+
+        function showFeedback() {
+            showNotification('💬 Feedback: We\'d love to hear from you!');
+        }
+
+        function showContribute() {
+            showNotification('📝 Want to contribute? Email us!');
+        }
+
+        function shareSite() {
+            navigator.clipboard.writeText(window.location.href);
+            showNotification('🔗 Link copied!');
+        }
+
+        function processDonation() {
+            showNotification('💝 Thank you for considering a donation!');
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            document.getElementById('notificationMessage').textContent = message;
+            notification.style.display = 'block';
+            setTimeout(() => { notification.style.display = 'none'; }, 3000);
+        }
+
+        window.onload = function() {
+            const featured = document.getElementById('featuredBooks');
+            const recent = document.getElementById('recentBooks');
+            const cats = document.getElementById('categories');
+            
+            books.filter(b => b.featured).forEach(book => {
+                featured.innerHTML += createBookCard(book);
+            });
+            
+            books.filter(b => b.recent).forEach(book => {
+                recent.innerHTML += createBookCard(book);
+            });
+            
+            categories.forEach(cat => {
+                cats.innerHTML += createCategoryCard(cat);
+            });
+        };
+    </script>
 </body>
 </html>
